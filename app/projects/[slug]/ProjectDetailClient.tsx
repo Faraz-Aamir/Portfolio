@@ -2,13 +2,17 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import SmoothScroll from '@/components/SmoothScroll';
 
+gsap.registerPlugin(ScrollTrigger);
+
 interface ProjectData {
   name: string;
+  tagline: string;
   description: string;
   category: string;
   year: string;
@@ -19,25 +23,38 @@ interface ProjectData {
 }
 
 export default function ProjectDetailClient({ project }: { project: ProjectData }) {
-  const pageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    if (!pageRef.current) return;
-    const elements = pageRef.current.querySelectorAll(
-      '.project-detail-label, .project-detail-meta-item, .project-detail-description, .project-detail-link, .project-detail-image'
+    if (!heroRef.current || !contentRef.current) return;
+    
+    // Animate Hero title
+    gsap.fromTo(
+      heroRef.current.querySelector('.project-hero-title-inner'),
+      { y: '100%' },
+      { y: '0%', duration: 1.2, ease: 'power4.out', delay: 0.1 }
+    );
+
+    // Animate content section on scroll
+    const contentElements = contentRef.current.querySelectorAll(
+      '.project-content-subtitle, .project-content-year, .project-detail-label, .project-detail-meta-item, .project-detail-description, .project-detail-link, .project-detail-image'
     );
 
     gsap.fromTo(
-      elements,
-      { y: 30, opacity: 0 },
+      contentElements,
+      { y: 50, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.7,
+        duration: 0.8,
         stagger: 0.1,
         ease: 'power3.out',
-        delay: 0.2,
+        scrollTrigger: {
+          trigger: contentRef.current,
+          start: 'top 85%',
+        },
       }
     );
   }, []);
@@ -57,22 +74,30 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
         </div>
       </header>
 
-      <div className="project-detail" ref={pageRef}>
+      {/* Hero Header */}
+      <div className="project-hero" ref={heroRef}>
+        <h1 className="project-hero-title">
+          <span style={{ display: 'block', overflow: 'hidden' }}>
+            <span className="project-hero-title-inner" style={{ display: 'block' }}>
+              {project.name}
+            </span>
+          </span>
+        </h1>
+      </div>
+
+      <div className="project-content" ref={contentRef}>
+        <div className="project-content-top">
+          <h2 className="project-content-subtitle">{project.tagline}</h2>
+          <div className="project-content-year">{project.year}</div>
+        </div>
+
         <div className="project-detail-header">
           <div>
             <div className="project-detail-label">PROJECT INFOS</div>
             <div className="project-detail-meta">
               <div className="project-detail-meta-item">
-                <div className="project-detail-meta-item-label">PROJECT</div>
-                <div className="project-detail-meta-item-value">{project.name}</div>
-              </div>
-              <div className="project-detail-meta-item">
                 <div className="project-detail-meta-item-label">CATEGORY</div>
                 <div className="project-detail-meta-item-value">{project.category}</div>
-              </div>
-              <div className="project-detail-meta-item">
-                <div className="project-detail-meta-item-label">YEAR</div>
-                <div className="project-detail-meta-item-value">{project.year}</div>
               </div>
               <div className="project-detail-meta-item">
                 <div className="project-detail-meta-item-label">TECH STACK</div>
@@ -96,14 +121,6 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
             </a>
           </div>
         </div>
-        <Image
-          src={project.image}
-          alt={project.name}
-          width={1400}
-          height={800}
-          className="project-detail-image"
-          priority
-        />
       </div>
     </>
   );

@@ -11,6 +11,7 @@ const projectsData: Record<string, {
   role: string;
   link: string;
   image: string;
+  tagline: string;
 }> = {
   'e-commerce-website': {
     name: 'E-COMMERCE WEBSITE',
@@ -22,6 +23,7 @@ const projectsData: Record<string, {
     role: 'Full-Stack Developer',
     link: 'https://aamirfabrics-nine.vercel.app/',
     image: '/images/project-ecommerce.jpg',
+    tagline: 'THE NEXT-GEN ONLINE SHOPPING EXPERIENCE',
   },
   'smart-attend-ai': {
     name: 'SMART ATTEND AI',
@@ -33,6 +35,7 @@ const projectsData: Record<string, {
     role: 'Developer',
     link: '#',
     image: '/images/project-smartattend.jpg',
+    tagline: 'AI-POWERED FACIAL RECOGNITION ATTENDANCE',
   },
 };
 

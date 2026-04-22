@@ -46,7 +46,7 @@ export default function RootLayout({
       className={`${jetbrainsMono.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

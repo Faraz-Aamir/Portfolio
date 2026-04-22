@@ -18,7 +18,10 @@ export default function Header({ onMenuToggle, menuOpen }: HeaderProps) {
   return (
     <header className="header" id="header">
       <div className="header-left">
-        <a href="/" className="header-logo">FARAZ AAMIR</a>
+        <a href="/" className="header-logo">
+          <span className="header-logo-circle">F</span>
+          FARAZ AAMIR
+        </a>
         <button className="header-btn hide-mobile" onClick={toggleTheme}>
           {theme === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
         </button>

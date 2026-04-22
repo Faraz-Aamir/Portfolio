@@ -46,7 +46,9 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-behavior: auto;
+  /* Lenis handles smooth scroll */
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -80,7 +82,8 @@ img {
   display: block;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -168,7 +171,8 @@ ul, ol {
   align-items: center;
   padding: 1.25rem 2rem;
   z-index: 1000;
-  mix-blend-mode: difference;
+  color: var(--text-primary);
+  transition: color 0.5s ease;
 }
 
 .header-left,
@@ -184,6 +188,29 @@ ul, ol {
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-logo-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-logo:hover .header-logo-circle {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 .header-logo:hover {
@@ -281,7 +308,11 @@ ul, ol {
 
 /* --- Scroll Reveal Section --- */
 .scroll-reveal {
+  min-height: 100vh;
   padding: 10rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .scroll-reveal-line {
@@ -317,11 +348,9 @@ ul, ol {
 
 .project-card {
   position: relative;
-  overflow: hidden;
-  border-radius: 8px;
   aspect-ratio: 16 / 10;
   cursor: pointer;
-  background: var(--card-bg);
+  background: transparent;
 }
 
 .project-card-image {
@@ -488,12 +517,15 @@ ul, ol {
 .footer-name {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(4rem, 20vw, 22rem);
+  font-size: clamp(2rem, 13vw, 16rem);
   line-height: 0.85;
   letter-spacing: -0.04em;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
   will-change: transform;
+  width: 100%;
 }
 
 .footer-bottom {
@@ -621,9 +653,57 @@ ul, ol {
 }
 
 /* --- Project Detail Page --- */
-.project-detail {
+.project-hero {
   min-height: 100vh;
-  padding: 8rem 2rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem 2rem;
+}
+
+.project-hero-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 10vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.project-content {
+  padding: 2rem 2rem 8rem;
+}
+
+.project-content-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+  .project-content-top {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    margin-bottom: 8rem;
+  }
+}
+
+.project-content-subtitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 6vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.project-content-year {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-align: right;
+  color: var(--text-secondary);
 }
 
 .project-detail-header {

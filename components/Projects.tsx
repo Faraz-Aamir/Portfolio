@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Image from 'next/image';
+import TiltedCard from './TiltedCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,13 +13,13 @@ const projects = [
   {
     slug: 'e-commerce-website',
     name: 'E-COMMERCE WEBSITE',
-    image: '/images/project-ecommerce.jpg',
+    image: '/images/project-ecommerce.png',
     category: 'WEB DEVELOPMENT',
   },
   {
     slug: 'smart-attend-ai',
     name: 'SMART ATTEND AI',
-    image: '/images/project-smartattend.jpg',
+    image: '/images/project-smartattend.png',
     category: 'AI & AUTOMATION',
   },
 ];
@@ -75,18 +76,26 @@ export default function Projects() {
             key={project.slug}
             className="project-card"
           >
-            <Image
-              src={project.image}
-              alt={project.name}
-              fill
-              className="project-card-image"
-              style={{ objectFit: 'cover' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
+            <TiltedCard
+              imageSrc={project.image}
+              altText={project.name}
+              captionText={project.category}
+              containerHeight="100%"
+              containerWidth="100%"
+              imageHeight="100%"
+              imageWidth="100%"
+              rotateAmplitude={12}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'flex-end', padding: '2rem' }}>
+                  <div className="project-card-name" style={{ padding: 0 }}>{project.name}</div>
+                  <div className="project-card-cta" style={{ opacity: 0.8 }}>VIEW →</div>
+                </div>
+              }
             />
-            <div className="project-card-overlay">
-              <div className="project-card-name">{project.name}</div>
-              <div className="project-card-cta">VIEW →</div>
-            </div>
           </Link>
         ))}
       </div>
