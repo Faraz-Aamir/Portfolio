@@ -1,50 +1,43 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const lines = [
-  "IT'S NEVER \"JUST A WEBSITE.\"",
-  "EVERY VULNERABILITY MATTERS.",
-  "I BUILD SECURE DIGITAL EXPERIENCES.",
-  "YOUR SECURITY. MY OBSESSION.",
-  "YOUR SYSTEM. MY PLAYGROUND.",
-];
-
 export default function ScrollReveal() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const lineElements = containerRef.current.querySelectorAll('.scroll-reveal-line');
-
-    lineElements.forEach((line) => {
-      gsap.to(line, {
-        color: 'var(--text-primary)',
-        scrollTrigger: {
-          trigger: line,
-          start: 'top 75%',
-          end: 'top 40%',
-          scrub: true,
-        },
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
   return (
-    <section className="scroll-reveal" id="about" ref={containerRef}>
-      {lines.map((text, i) => (
-        <div className="scroll-reveal-line" key={i}>
-          {text}
+    <section className="about-section" id="about">
+      <div className="about-inner">
+        <div className="about-label-col">
+          <span className="about-label heading-lg">ABOUT</span>
         </div>
-      ))}
+
+        <div className="about-content">
+          <p className="about-line">
+            I&apos;m <strong>Faraz Aamir</strong> — a cybersecurity student
+            at <strong>FAST NUCES</strong>, Islamabad. I spend most of my
+            time breaking into systems to understand how they work, then
+            building them back stronger.
+          </p>
+
+          <p className="about-line">
+            My work sits at the intersection of <strong>ethical hacking</strong>,
+            {' '}<strong>web development</strong>, and <strong>automation</strong>.
+            I don&apos;t wait for assignments to learn something new — I pick
+            a problem, build a solution, break it, and repeat until it holds.
+          </p>
+
+          <p className="about-line">
+            When I&apos;m not writing code or hunting vulnerabilities,
+            you&apos;ll probably find me exploring new tools, contributing
+            to side projects, or figuring out how to make things faster
+            and more secure.
+          </p>
+
+          <div className="about-divider" />
+
+          <div className="about-availability">
+            <span className="about-availability-dot" />
+            <span>Open to freelance projects & collaborations</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
