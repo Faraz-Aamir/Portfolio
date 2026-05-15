@@ -26,12 +26,33 @@ export const metadata: Metadata = {
     "portfolio",
     "FAST NUCES",
     "ethical hacking",
+    "Next.js",
+    "full-stack developer",
+    "Islamabad",
   ],
   authors: [{ name: "Faraz Aamir" }],
+  creator: "Faraz Aamir",
+  metadataBase: new URL("https://farazaamir.vercel.app"),
   openGraph: {
     title: "Faraz Aamir — Cybersecurity & Web Development",
     description: "I hack, code and create. Cybersecurity student & web developer.",
     type: "website",
+    url: "https://farazaamir.vercel.app",
+    siteName: "Faraz Aamir Portfolio",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Faraz Aamir — Cybersecurity & Web Development",
+    description: "I hack, code and create. Cybersecurity student & web developer.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -44,9 +65,28 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${jetbrainsMono.variable} ${inter.variable}`}
-      suppressHydrationWarning
+      data-theme="dark"
     >
-      <body suppressHydrationWarning>
+      <head>
+        {/* Prevent theme flash: set data-theme before React hydrates */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'light' || theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', theme);
+                  } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

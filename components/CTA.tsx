@@ -37,11 +37,7 @@ export default function CTA() {
   return (
     <section className="cta" id="cta" ref={sectionRef}>
       <div className="cta-heading">
-        LET&apos;S BUILD
-        <br />
-        SOMETHING
-        <br />
-        SECURE.
+        LET&apos;S BUILD SOMETHING SECURE.
       </div>
       <div className="cta-content">
         <p className="cta-text">
@@ -49,7 +45,7 @@ export default function CTA() {
           Let&apos;s make something worth talking about.
         </p>
         <a
-          href="mailto:faraz@example.com"
+          href="mailto:farazaamir126@gmail.com"
           className="cta-link"
         >
           GET IN TOUCH

@@ -27,6 +27,9 @@ export default function Header({ onMenuToggle, menuOpen }: HeaderProps) {
         </button>
       </div>
       <div className="header-right">
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="header-btn hide-mobile">
+          RESUME ↓
+        </a>
         <button className="header-btn" onClick={onMenuToggle}>
           {menuOpen ? 'CLOSE' : 'MENU'}
         </button>

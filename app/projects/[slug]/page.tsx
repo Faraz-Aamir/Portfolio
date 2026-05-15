@@ -22,7 +22,7 @@ const projectsData: Record<string, {
     tech: 'Next.js, TypeScript, Supabase, PostgreSQL',
     role: 'Full-Stack Developer',
     link: 'https://aamirfabrics-nine.vercel.app/',
-    image: '/images/project-ecommerce.jpg',
+    image: '/images/project-ecommerce.png',
     tagline: 'THE NEXT-GEN ONLINE SHOPPING EXPERIENCE',
   },
   'smart-attend-ai': {
@@ -34,7 +34,7 @@ const projectsData: Record<string, {
     tech: 'Python, OpenCV, TensorFlow, Flask',
     role: 'Developer',
     link: '#',
-    image: '/images/project-smartattend.jpg',
+    image: '/images/project-smartattend.png',
     tagline: 'AI-POWERED FACIAL RECOGNITION ATTENDANCE',
   },
 };

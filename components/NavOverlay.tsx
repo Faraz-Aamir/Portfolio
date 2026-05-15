@@ -16,8 +16,8 @@ const navItems = [
 ];
 
 const socialItems = [
-  { label: 'GITHUB ↗', href: 'https://github.com/' },
-  { label: 'LINKEDIN ↗', href: 'https://linkedin.com/' },
+  { label: 'GITHUB ↗', href: 'https://github.com/Faraz-Aamir' },
+  { label: 'LINKEDIN ↗', href: 'https://www.linkedin.com/in/faraz-aamir' },
   { label: 'INSTAGRAM ↗', href: 'https://instagram.com/' },
   { label: 'TWITTER/X ↗', href: 'https://x.com/' },
 ];

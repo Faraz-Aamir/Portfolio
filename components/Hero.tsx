@@ -10,9 +10,10 @@ export default function Hero() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const pkt = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
+      const hours = String(pkt.getHours()).padStart(2, '0');
+      const minutes = String(pkt.getMinutes()).padStart(2, '0');
+      const seconds = String(pkt.getSeconds()).padStart(2, '0');
       setTime(`${hours}:${minutes}:${seconds}`);
     };
     updateTime();
@@ -47,13 +48,13 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home" ref={heroRef}>
-      <div className="hero-text heading-xl">
+      <h1 className="hero-text heading-xl">
         {heroWords.map((word, i) => (
           <span className="hero-line" key={i}>
             <span className="hero-line-inner">{word}</span>
           </span>
         ))}
-      </div>
+      </h1>
 
       <div className="hero-bottom">
         <div className="hero-bottom-left">

@@ -6,6 +6,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const socialLinks = [
+  { label: 'GITHUB', href: 'https://github.com/Faraz-Aamir' },
+  { label: 'LINKEDIN', href: 'https://www.linkedin.com/in/faraz-aamir' },
+  { label: 'INSTAGRAM', href: 'https://instagram.com/' },
+  { label: 'EMAIL', href: 'mailto:farazaamir126@gmail.com' },
+];
+
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
@@ -14,9 +21,10 @@ export default function Footer() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const pkt = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
+      const hours = String(pkt.getHours()).padStart(2, '0');
+      const minutes = String(pkt.getMinutes()).padStart(2, '0');
+      const seconds = String(pkt.getSeconds()).padStart(2, '0');
       setTime(`${hours}:${minutes}:${seconds}`);
     };
     updateTime();
@@ -49,9 +57,25 @@ export default function Footer() {
       <div className="footer-name" ref={nameRef}>
         FARAZ AAMIR
       </div>
+
+      <div className="footer-socials">
+        {socialLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target={link.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            className="footer-social-link"
+          >
+            {link.label}
+            {!link.href.startsWith('mailto') && ' ↗'}
+          </a>
+        ))}
+      </div>
+
       <div className="footer-bottom">
         <div className="footer-bottom-left">
-          I BUILD SECURE CODE & HACK ETHICALLY.
+          © {new Date().getFullYear()} FARAZ AAMIR. ALL RIGHTS RESERVED.
         </div>
         <div className="footer-bottom-right">
           <span>ISLAMABAD, PAKISTAN</span>

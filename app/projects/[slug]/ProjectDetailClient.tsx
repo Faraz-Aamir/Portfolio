@@ -64,7 +64,10 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
       <SmoothScroll />
       <header className="header">
         <div className="header-left">
-          <Link href="/" className="header-logo">FARAZ AAMIR</Link>
+          <Link href="/" className="header-logo">
+            <span className="header-logo-circle">F</span>
+            FARAZ AAMIR
+          </Link>
           <button className="header-btn hide-mobile" onClick={toggleTheme}>
             {theme === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
           </button>
@@ -111,15 +114,29 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
           </div>
           <div>
             <p className="project-detail-description">{project.description}</p>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-detail-link"
-            >
-              VISIT WEBSITE →
-            </a>
+            {project.link && project.link !== '#' && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-detail-link"
+              >
+                VISIT WEBSITE →
+              </a>
+            )}
           </div>
+        </div>
+
+        {/* Project Screenshot */}
+        <div className="project-detail-image">
+          <Image
+            src={project.image}
+            alt={`${project.name} screenshot`}
+            width={1400}
+            height={875}
+            priority
+            style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+          />
         </div>
       </div>
     </>

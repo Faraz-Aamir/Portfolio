@@ -7,14 +7,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  'CYBERSECURITY',
-  'WEB DEVELOPMENT',
-  'PYTHON',
-  'C++',
-  'NETWORK SECURITY',
-  'ETHICAL HACKING',
-  'AI & AUTOMATION',
-  'PROBLEM SOLVING',
+  { name: 'CYBERSECURITY', tools: 'Burp Suite · Wireshark · Nmap' },
+  { name: 'WEB DEVELOPMENT', tools: 'Next.js · React · TypeScript' },
+  { name: 'PYTHON', tools: 'Flask · Automation · Scripting' },
+  { name: 'C++', tools: 'OOP · DSA · Systems Programming' },
+  { name: 'NETWORK SECURITY', tools: 'TCP/IP · Firewalls · IDS/IPS' },
+  { name: 'ETHICAL HACKING', tools: 'Metasploit · Kali · OWASP' },
+  { name: 'AI & AUTOMATION', tools: 'OpenCV · TensorFlow · ML' },
+  { name: 'PROBLEM SOLVING', tools: 'Competitive Programming · CTF' },
 ];
 
 export default function Skills() {
@@ -46,8 +46,11 @@ export default function Skills() {
       <div className="skills-title heading-lg">SKILLS</div>
       <div className="skills-list">
         {skills.map((skill, i) => (
-          <div className="skill-item" key={skill}>
-            <span className="skill-item-name">{skill}</span>
+          <div className="skill-item" key={skill.name}>
+            <div className="skill-item-left">
+              <span className="skill-item-name">{skill.name}</span>
+              <span className="skill-item-tools">{skill.tools}</span>
+            </div>
             <span className="skill-item-index">
               {String(i + 1).padStart(2, '0')}
             </span>
