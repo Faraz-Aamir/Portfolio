@@ -1,6 +1,6 @@
 'use client';
 
-export default function ScrollReveal() {
+export default function About() {
   return (
     <section className="about-section" id="about">
       <div className="about-inner">
@@ -34,7 +34,7 @@ export default function ScrollReveal() {
 
           <div className="about-availability">
             <span className="about-availability-dot" />
-            <span>Open to freelance projects & collaborations</span>
+            <span>Open to freelance projects &amp; collaborations</span>
           </div>
         </div>
       </div>

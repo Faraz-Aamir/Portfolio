@@ -1,13 +1,15 @@
 'use client';
 
 import { useTheme } from '@/context/ThemeContext';
+import Link from 'next/link';
 
 interface HeaderProps {
-  onMenuToggle: () => void;
-  menuOpen: boolean;
+  onMenuToggle?: () => void;
+  menuOpen?: boolean;
+  variant?: 'default' | 'minimal';
 }
 
-export default function Header({ onMenuToggle, menuOpen }: HeaderProps) {
+export default function Header({ onMenuToggle, menuOpen, variant = 'default' }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   const scrollToCTA = () => {
@@ -18,24 +20,35 @@ export default function Header({ onMenuToggle, menuOpen }: HeaderProps) {
   return (
     <header className="header" id="header">
       <div className="header-left">
-        <a href="/" className="header-logo">
+        <Link href="/" className="header-logo">
           <span className="header-logo-circle">F</span>
           FARAZ AAMIR
-        </a>
+        </Link>
         <button className="header-btn hide-mobile" onClick={toggleTheme}>
           {theme === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
         </button>
       </div>
       <div className="header-right">
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="header-btn hide-mobile">
-          RESUME ↓
-        </a>
-        <button className="header-btn" onClick={onMenuToggle}>
-          {menuOpen ? 'CLOSE' : 'MENU'}
-        </button>
-        <button className="header-btn hide-mobile" onClick={scrollToCTA}>
-          LET&apos;S TALK
-        </button>
+        {variant === 'default' && (
+          <button className="header-btn hide-mobile" onClick={scrollToCTA}>
+            LET&apos;S TALK
+          </button>
+        )}
+        {variant === 'minimal' && (
+          <Link href="/" className="header-btn">
+            BACK TO HOME
+          </Link>
+        )}
+        {variant === 'default' && onMenuToggle && (
+          <button 
+            className="header-btn" 
+            onClick={onMenuToggle}
+            aria-expanded={menuOpen}
+            aria-controls="nav-overlay"
+          >
+            {menuOpen ? 'CLOSE' : 'MENU'}
+          </button>
+        )}
       </div>
     </header>
   );

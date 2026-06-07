@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
+import { socialLinks } from '@/lib/constants';
 
 interface NavOverlayProps {
   isOpen: boolean;
@@ -13,13 +14,6 @@ const navItems = [
   { label: 'PROJECTS', target: '#projects' },
   { label: 'SKILLS', target: '#skills' },
   { label: 'ABOUT', target: '#about' },
-];
-
-const socialItems = [
-  { label: 'GITHUB ↗', href: 'https://github.com/Faraz-Aamir' },
-  { label: 'LINKEDIN ↗', href: 'https://www.linkedin.com/in/faraz-aamir' },
-  { label: 'INSTAGRAM ↗', href: 'https://instagram.com/' },
-  { label: 'TWITTER/X ↗', href: 'https://x.com/' },
 ];
 
 export default function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
@@ -95,8 +89,16 @@ export default function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
   useEffect(() => {
     if (isOpen) {
       animateOpen();
+      // Basic focus trap and body scroll lock
+      document.body.style.overflow = 'hidden';
+      const timer = setTimeout(() => {
+        const firstLink = overlayRef.current?.querySelector('button');
+        firstLink?.focus();
+      }, 700); // after animation
+      return () => clearTimeout(timer);
     } else {
       animateClose();
+      document.body.style.overflow = '';
     }
   }, [isOpen, animateOpen, animateClose]);
 
@@ -126,15 +128,15 @@ export default function NavOverlay({ isOpen, onClose }: NavOverlayProps) {
           ))}
         </nav>
         <div className="nav-socials">
-          {socialItems.map((item) => (
+          {socialLinks.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={item.isExternal ? '_blank' : undefined}
+              rel={item.isExternal ? 'noopener noreferrer' : undefined}
               className="nav-social"
             >
-              {item.label}
+              {item.label}{item.isExternal ? ' ↗' : ''}
             </a>
           ))}
         </div>

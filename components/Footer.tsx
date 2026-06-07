@@ -1,36 +1,22 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { usePakistanTime } from '@/hooks/usePakistanTime';
+import { socialLinks } from '@/lib/constants';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const socialLinks = [
-  { label: 'GITHUB', href: 'https://github.com/Faraz-Aamir' },
-  { label: 'LINKEDIN', href: 'https://www.linkedin.com/in/faraz-aamir' },
-  { label: 'INSTAGRAM', href: 'https://instagram.com/' },
-  { label: 'EMAIL', href: 'mailto:farazaamir126@gmail.com' },
-];
+// Wait until client has mounted to register ScrollTrigger to prevent hydration issues
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
-  const [time, setTime] = useState('');
+  const time = usePakistanTime();
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const pkt = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
-      const hours = String(pkt.getHours()).padStart(2, '0');
-      const minutes = String(pkt.getMinutes()).padStart(2, '0');
-      const seconds = String(pkt.getSeconds()).padStart(2, '0');
-      setTime(`${hours}:${minutes}:${seconds}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // Time managed by hook
 
   useEffect(() => {
     if (!nameRef.current) return;
@@ -63,12 +49,12 @@ export default function Footer() {
           <a
             key={link.label}
             href={link.href}
-            target={link.href.startsWith('mailto') ? undefined : '_blank'}
-            rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            target={link.isExternal ? '_blank' : undefined}
+            rel={link.isExternal ? 'noopener noreferrer' : undefined}
             className="footer-social-link"
           >
             {link.label}
-            {!link.href.startsWith('mailto') && ' ↗'}
+            {link.isExternal && ' ↗'}
           </a>
         ))}
       </div>

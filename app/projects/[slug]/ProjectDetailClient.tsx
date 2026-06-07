@@ -4,9 +4,8 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useTheme } from '@/context/ThemeContext';
 import SmoothScroll from '@/components/SmoothScroll';
+import Header from '@/components/Header';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +24,6 @@ interface ProjectData {
 export default function ProjectDetailClient({ project }: { project: ProjectData }) {
   const heroRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (!heroRef.current || !contentRef.current) return;
@@ -62,20 +60,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
   return (
     <>
       <SmoothScroll />
-      <header className="header">
-        <div className="header-left">
-          <Link href="/" className="header-logo">
-            <span className="header-logo-circle">F</span>
-            FARAZ AAMIR
-          </Link>
-          <button className="header-btn hide-mobile" onClick={toggleTheme}>
-            {theme === 'light' ? 'DARK MODE' : 'LIGHT MODE'}
-          </button>
-        </div>
-        <div className="header-right">
-          <Link href="/" className="header-btn">BACK</Link>
-        </div>
-      </header>
+      <Header variant="minimal" />
 
       {/* Hero Header */}
       <div className="project-hero" ref={heroRef}>

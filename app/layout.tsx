@@ -40,11 +40,13 @@ export const metadata: Metadata = {
     url: "https://farazaamir.vercel.app",
     siteName: "Faraz Aamir Portfolio",
     locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Faraz Aamir — Cybersecurity & Web Development",
     description: "I hack, code and create. Cybersecurity student & web developer.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -66,6 +68,7 @@ export default function RootLayout({
       lang="en"
       className={`${jetbrainsMono.variable} ${inter.variable}`}
       data-theme="dark"
+      suppressHydrationWarning
     >
       <head>
         {/* Prevent theme flash: set data-theme before React hydrates */}
@@ -86,7 +89,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body>
+        <a href="#main-content" className="skip-to-content">
+          SKIP TO CONTENT
+        </a>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

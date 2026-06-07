@@ -1,25 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { usePakistanTime } from '@/hooks/usePakistanTime';
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [time, setTime] = useState('');
+  const time = usePakistanTime();
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const pkt = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
-      const hours = String(pkt.getHours()).padStart(2, '0');
-      const minutes = String(pkt.getMinutes()).padStart(2, '0');
-      const seconds = String(pkt.getSeconds()).padStart(2, '0');
-      setTime(`${hours}:${minutes}:${seconds}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // Time is now managed by usePakistanTime hook
 
   useEffect(() => {
     if (!heroRef.current) return;

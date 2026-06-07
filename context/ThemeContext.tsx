@@ -15,18 +15,22 @@ const ThemeContext = createContext<ThemeContextValue>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    const stored = localStorage.getItem('theme');
+    return (stored === 'dark' || stored === 'light') ? stored : 'dark';
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('theme') as Theme | null;
     if (stored === 'dark' || stored === 'light') {
-      setTheme(stored);
       document.documentElement.setAttribute('data-theme', stored);
     } else {
       // Default to dark mode
       document.documentElement.setAttribute('data-theme', 'dark');
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
