@@ -10,24 +10,19 @@ export default function About() {
 
         <div className="about-content">
           <p className="about-line">
-            I&apos;m <strong>Faraz Aamir</strong> — a cybersecurity student
-            at <strong>FAST NUCES</strong>, Islamabad. I spend most of my
-            time breaking into systems to understand how they work, then
-            building them back stronger.
+            I&apos;m <strong>Faraz Aamir</strong>, a Cyber Security
+            undergraduate at <strong>FAST NUCES</strong>, currently in my
+            3rd semester. I build practical projects in{' '}
+            <strong>C++</strong>, <strong>Python</strong>, and{' '}
+            <strong>Web Development</strong>, explore ethical hacking,
+            and love solving real-world security challenges.
           </p>
 
           <p className="about-line">
-            My work sits at the intersection of <strong>ethical hacking</strong>,
-            {' '}<strong>web development</strong>, and <strong>automation</strong>.
-            I don&apos;t wait for assignments to learn something new — I pick
-            a problem, build a solution, break it, and repeat until it holds.
-          </p>
-
-          <p className="about-line">
-            When I&apos;m not writing code or hunting vulnerabilities,
-            you&apos;ll probably find me exploring new tools, contributing
-            to side projects, or figuring out how to make things faster
-            and more secure.
+            Passionate about <strong>open source</strong>,{' '}
+            <strong>Linux</strong>, and{' '}
+            <strong>secure software engineering</strong> — I&apos;m always
+            looking for the next problem to crack and the next tool to master.
           </p>
 
           <div className="about-divider" />
@@ -36,6 +31,16 @@ export default function About() {
             <span className="about-availability-dot" />
             <span>Open to freelance projects &amp; collaborations</span>
           </div>
+
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-resume-link"
+          >
+            VIEW RESUME
+            <span className="about-resume-arrow">↗</span>
+          </a>
         </div>
       </div>
     </section>

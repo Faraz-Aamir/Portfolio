@@ -415,6 +415,37 @@ ol {
   }
 }
 
+.about-resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  width: fit-content;
+  text-transform: uppercase;
+}
+
+.about-resume-link:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.about-resume-arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.about-resume-link:hover .about-resume-arrow {
+  transform: translate(3px, -3px);
+}
+
 /* --- Projects Section --- */
 .projects {
   padding: 4rem 2rem 8rem;
