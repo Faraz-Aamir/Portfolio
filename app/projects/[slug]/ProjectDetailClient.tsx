@@ -119,7 +119,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectData 
             alt={`${project.name} screenshot`}
             width={1400}
             height={875}
-            priority
+            preload
             style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
           />
         </div>

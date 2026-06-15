@@ -30,6 +30,16 @@ export default function Header({ onMenuToggle, menuOpen, variant = 'default' }: 
       </div>
       <div className="header-right">
         {variant === 'default' && (
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-btn hide-mobile"
+          >
+            RESUME
+          </a>
+        )}
+        {variant === 'default' && (
           <button className="header-btn hide-mobile" onClick={scrollToCTA}>
             LET&apos;S TALK
           </button>

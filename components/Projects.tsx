@@ -4,22 +4,45 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import TiltedCard from './TiltedCard';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     slug: 'e-commerce-website',
-    name: 'E-COMMERCE WEBSITE',
+    name: 'AAMIR FABRICS',
     image: '/images/project-ecommerce.png',
     category: 'WEB DEVELOPMENT',
+    size: 'featured',
   },
   {
-    slug: 'smart-attend-ai',
-    name: 'SMART ATTEND AI',
-    image: '/images/project-smartattend.png',
-    category: 'AI & AUTOMATION',
+    slug: 'dld-alarm-network',
+    name: 'DLD ALARM NETWORK',
+    image: '/images/project-dld.jpeg',
+    category: 'HARDWARE / DLD',
+    size: 'horizontal',
+  },
+  {
+    slug: 'phishing-awareness',
+    name: 'PHISHGUARD',
+    image: '/images/project-phishguard.png',
+    category: 'CYBERSECURITY',
+    size: 'square',
+  },
+  {
+    slug: 'network-sniffer',
+    name: 'NETWORK SNIFFER',
+    image: '/images/project-sniffer.jpeg',
+    category: 'CYBERSECURITY',
+    size: 'square',
+  },
+  {
+    slug: 'code-alpha',
+    name: 'CODE ALPHA',
+    image: '/images/project-codealpha.png',
+    category: 'SOFTWARE ENGINEERING',
+    size: 'square',
   },
 ];
 
@@ -45,15 +68,16 @@ export default function Projects() {
       }
     );
 
-    const cards = sectionRef.current.querySelectorAll('.project-card');
+    const cards = sectionRef.current.querySelectorAll('.bento-card');
     gsap.fromTo(
       cards,
-      { y: 80, opacity: 0 },
+      { y: 60, opacity: 0, scale: 0.97 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
+        scale: 1,
+        duration: 0.7,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -68,33 +92,36 @@ export default function Projects() {
       <div className="projects-title heading-lg" ref={titleRef}>
         PROJECTS
       </div>
-      <div className="projects-grid">
+      <div className="bento-grid">
         {projects.map((project) => (
           <Link
             href={`/projects/${project.slug}`}
             key={project.slug}
-            className="project-card"
+            className={`bento-card bento-card--${project.size} bento-card--${project.slug}`}
+            data-cursor-text={project.category}
           >
-            <TiltedCard
-              imageSrc={project.image}
-              altText={project.name}
-              captionText={project.category}
-              containerHeight="100%"
-              containerWidth="100%"
-              imageHeight="100%"
-              imageWidth="100%"
-              rotateAmplitude={12}
-              scaleOnHover={1.05}
-              showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-              overlayContent={
-                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'flex-end', padding: '2rem' }}>
-                  <div className="project-card-name" style={{ padding: 0 }}>{project.name}</div>
-                  <div className="project-card-cta" style={{ opacity: 0.8 }}>VIEW →</div>
-                </div>
-              }
-            />
+            <div className="bento-card-image-wrap">
+              <Image
+                src={project.image}
+                alt={project.name}
+                fill
+                sizes={
+                  project.size === 'featured'
+                    ? '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 60vw'
+                    : project.size === 'horizontal'
+                    ? '(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 60vw'
+                    : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 30vw'
+                }
+                className="bento-card-image"
+              />
+            </div>
+            <div className="bento-card-overlay">
+              <span className="bento-card-tag">{project.category}</span>
+              <div className="bento-card-info">
+                <h3 className="bento-card-name">{project.name}</h3>
+                <span className="bento-card-cta">VIEW →</span>
+              </div>
+            </div>
           </Link>
         ))}
       </div>

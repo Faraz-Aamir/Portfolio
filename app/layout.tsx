@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -89,11 +90,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <a href="#main-content" className="skip-to-content">
           SKIP TO CONTENT
         </a>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <CustomCursor />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

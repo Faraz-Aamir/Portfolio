@@ -25,17 +25,53 @@ const projectsData: Record<string, {
     image: '/images/project-ecommerce.png',
     tagline: 'THE NEXT-GEN ONLINE SHOPPING EXPERIENCE',
   },
-  'smart-attend-ai': {
-    name: 'SMART ATTEND AI',
+  'dld-alarm-network': {
+    name: 'DLD ALARM NETWORK',
     description:
-      'An intelligent attendance tracking system powered by facial recognition technology. The application uses computer vision and machine learning algorithms to automatically identify and log student attendance in real-time. Built with Python and integrated with a web-based dashboard for administrators to monitor attendance records and generate reports.',
-    category: 'AI & AUTOMATION',
+      'A hardware-based priority alarm system designed to monitor 8 independent safety zones simultaneously. The system uses a priority encoder (74LS148) to identify the highest-priority active alarm, a decoder (74LS138) to route the alarm signal, and NE555 timers to generate distinct audible/visual alerts. Built entirely from discrete digital logic ICs on a breadboard.',
+    category: 'HARDWARE / DIGITAL LOGIC',
     year: '2026',
-    tech: 'Python, OpenCV, TensorFlow, Flask',
+    tech: '74LS148, 74LS138, NE555 Timer, LEDs',
+    role: 'Hardware Engineer',
+    link: 'https://github.com/Faraz-Aamir/Industrial-Multi-Zone-Critical-Alarm-Network',
+    image: '/images/project-dld.jpeg',
+    tagline: 'INDUSTRIAL MULTI-ZONE CRITICAL ALARM SYSTEM',
+  },
+  'network-sniffer': {
+    name: 'NETWORK SNIFFER',
+    description:
+      'A Python-based network packet sniffer for real-time traffic analysis and monitoring. Captures and dissects network packets, displaying detailed information including source/destination IPs, protocols, ports, TTL values, and TCP flags. Features colorized terminal output, protocol breakdown statistics, and top talker analysis.',
+    category: 'CYBERSECURITY',
+    year: '2026',
+    tech: 'Python, Scapy, Colorama',
     role: 'Developer',
+    link: 'https://github.com/Faraz-Aamir/CodeAlpha_Basic_Network_Sniffer',
+    image: '/images/project-sniffer.jpeg',
+    tagline: 'REAL-TIME NETWORK PACKET ANALYSIS',
+  },
+  'phishing-awareness': {
+    name: 'PHISHGUARD',
+    description:
+      'An interactive cybersecurity training platform designed to educate users about phishing attacks. Features real-world phishing examples, attack type breakdowns, interactive quizzes, and practical tips for staying safe online. Built with a dark-themed UI emphasizing key statistics like 3.4B daily phishing emails and $4.9M average breach costs.',
+    category: 'CYBERSECURITY',
+    year: '2026',
+    tech: 'HTML5, CSS3, JavaScript',
+    role: 'Developer',
+    link: 'https://github.com/Faraz-Aamir/Phishing_Awareness_Module',
+    image: '/images/project-phishguard.png',
+    tagline: 'INTERACTIVE PHISHING AWARENESS TRAINING',
+  },
+  'code-alpha': {
+    name: 'CODE ALPHA',
+    description:
+      'A robust C++ based Online Judge (OJ) platform designed similar to LeetCode. Users can attempt C++ programming challenges, write their solutions in an integrated environment, and have their code evaluated against rigorous test cases. It features automated compilation, execution, and result verification to provide immediate feedback on whether the solution is accepted or has errors.',
+    category: 'SOFTWARE ENGINEERING',
+    year: '2026',
+    tech: 'C++, Object-Oriented Programming, Data Structures',
+    role: 'Backend Developer',
     link: '#',
-    image: '/images/project-smartattend.png',
-    tagline: 'AI-POWERED FACIAL RECOGNITION ATTENDANCE',
+    image: '/images/project-codealpha.png',
+    tagline: 'C++ ONLINE JUDGE PLATFORM',
   },
 };
 
